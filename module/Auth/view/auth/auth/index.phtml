@@ -1,0 +1,23 @@
+<?php
+$title = 'Please log in';
+$this->headTitle($title);
+?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+<div style="border-radius:5px;margin:0 auto;border: 1px solid #CCC;width: 400px;">
+<?php
+    $form->setAttribute('action', $this->url('auth', array('action' => 'index')));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    echo $this->formRow($form->get('user'));
+    echo $this->formRow($form->get('password'));
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
+?>
+</div>
+<style>
+    form#login{padding: 20px;}
+    span{display: inline-block;width: 120px;}
+    input[type=text]{border-radius: 5px;border: 1px solid #CCCCCC;}
+    input[type=password]{border-radius: 5px;border: 1px solid #CCCCCC;}
+    label{display: block;}
+</style>
