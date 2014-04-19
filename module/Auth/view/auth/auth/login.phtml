@@ -5,13 +5,21 @@ $this->headTitle($title);
  <h1><?php echo $this->escapeHtml($title); ?></h1>
 <div style="border-radius:5px;margin:0 auto;border: 1px solid #CCC;width: 400px;">
 <?php
-    $form->setAttribute('action', $this->url('auth', array('action' => 'index')));
+    $form->setAttribute('action', $this->url('auth', array('action' => 'authenticate')));
     $form->prepare();
     echo $this->form()->openTag($form);
     echo $this->formRow($form->get('user'));
     echo $this->formRow($form->get('password'));
     echo $this->formSubmit($form->get('submit'));
     echo $this->form()->closeTag();
+    if ($this->messages){
+        echo '<ul>';
+        foreach($this->messages as $message)
+        {
+            echo '<li>'.$message.'</li>';
+        }
+        echo '</ul>';
+    }
 ?>
 </div>
 <style>

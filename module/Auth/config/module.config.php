@@ -10,6 +10,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Auth\Controller\Auth' => 'Auth\Controller\AuthController',
+            'Auth\Controller\Success' => 'Auth\Controller\SuccessController',
         ),
     ),
 
@@ -25,16 +26,33 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Auth\Controller\Auth',
+                        'action'     => 'login',
+                    ),
+                ),
+            ),
+
+            'success' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/success/[:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        /*'id'     => '[0-9]+',*/
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Auth\Controller\Success',
                         'action'     => 'index',
                     ),
                 ),
             ),
+
         ),
     ),
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'album' => __DIR__ . '/../view',
+            'auth' => __DIR__ . '/../view',
+            'success' => __DIR__ . '/../view',
         ),
     ),
 );
