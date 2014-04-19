@@ -37,7 +37,6 @@ return array(
                     'route'    => '/success/[:action]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        /*'id'     => '[0-9]+',*/
                     ),
                     'defaults' => array(
                         'controller' => 'Auth\Controller\Success',
@@ -51,8 +50,7 @@ return array(
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'auth' => __DIR__ . '/../view',
-            'success' => __DIR__ . '/../view',
+            'auth' => __DIR__ . '/../view',//module name
         ),
     ),
 );
