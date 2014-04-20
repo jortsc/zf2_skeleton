@@ -10,14 +10,16 @@ namespace Reports\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Debug\Debug;
 
 class DashboardController  extends AbstractActionController
 {
     public function indexAction()
     {
-      /*  if (!$this->getServiceLocator()->get('AuthService')->hasIdentity()){
-            return $this->redirect()->toRoute('auth');
-        }*/
+        $authService = $this->getServiceLocator()
+            ->get('AuthService');
+
+        Debug::dump($authService->getIdentity());
         return new ViewModel();
     }
-} 
+}

@@ -12,6 +12,11 @@ return array(
             'Auth\Controller\Auth' => 'Auth\Controller\AuthController',
             'Auth\Controller\Success' => 'Auth\Controller\SuccessController',
         ),
+        'controller_plugins' => array(
+            'invokables' => array(
+                'Auth\Controller\Plugin\Checker' => 'Auth\Controller\Plugin\Checker',
+            )
+        ),
     ),
 
     'router' => array(
@@ -27,6 +32,17 @@ return array(
                     'defaults' => array(
                         'controller' => 'Auth\Controller\Auth',
                         'action'     => 'login',
+                    ),
+                ),
+            ),
+
+            'logout' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        'controller' => 'Auth\Controller\Auth',
+                        'action'     => 'logout',
                     ),
                 ),
             ),

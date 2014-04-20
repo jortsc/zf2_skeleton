@@ -25,7 +25,7 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Reports\Controller\Dashboard',
-                        'action'     => 'view',
+                        'action'     => 'index',
                     ),
                 ),
             ),

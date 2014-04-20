@@ -14,6 +14,9 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin,
     Zend\Permissions\Acl\Role\GenericRole as Role,
     Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
+use Zend\Debug\Debug;
+
+
 class Checker extends AbstractPlugin
 {
     protected $sessionContainer;
@@ -26,24 +29,24 @@ class Checker extends AbstractPlugin
         return $this->sessionContainer;
     }
 
-    public function doAuthorization($e)
+    public function checkAuth($e)
     {
-
         $controller = $e->getTarget();
-        $controllerClass = get_class($controller);
-        //$namespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+        $controllerClass = (string)get_class($controller);
+//      $namespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+        $serviceLocator = $this->getController()->getServiceLocator();
+//      Debug::dump($controllerClass);
+//      Debug::dump($namespace);
 
-        if (!$this->sm->get('AuthService')->hasIdentity()){
-            $router = $e->getRouter();
-            $url    = $router->assemble(array(), array('name' => 'auth'));
-
-            $response = $e->getResponse();
-            $response->setStatusCode(302);
-            //redirect to login route...
-            /* change with header('location: '.$url); if code below not working */
-            $response->getHeaders()->addHeaderLine('Location', $url);
-            $e->stopPropagation();
-            //$this->controller->plugin('redirect')->toRoute('auth');
+        if('Auth\Controller\AuthController' !== $controllerClass){
+            if (!$serviceLocator->get('AuthService')->hasIdentity()){
+                $router = $e->getRouter();
+                $url    = $router->assemble(array(), array('name' => 'logout'));
+                $response = $e->getResponse();
+                $response->setStatusCode(302);
+                $response->getHeaders()->addHeaderLine('Location', $url);
+                $e->stopPropagation();
+            }
         }
 
       /*  //setting ACL...

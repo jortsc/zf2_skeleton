@@ -15,9 +15,6 @@ use Zend\Mvc\MvcEvent;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
-    private $sm;
-    private $controller;
-
     public function getAutoloaderConfig()
     {
         return array(
@@ -36,38 +33,4 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return include __DIR__ . '/config/module.config.php';
     }
-
-    /**
-     * Getting service locator and called controller to redirect if it is necessary
-    */
- /*   public function onBootstrap(MvcEvent $e)
-    {
-        $this->sm = $e->getApplication()->getServiceManager();
-
-        $e->getApplication()->getEventManager()
-                            ->getSharedManager()
-                            ->attach('Zend\Mvc\Controller\AbstractActionController',
-                                     'dispatch',
-                                 function($e) {
-                                     $this->controller = $e->getTarget();
-                                 },
-                                 100
-                            );
-    }*/
-
-    /**
-     * Checking for auth
-
-    public function preDispatch(MvcEvent $e){
-        $this->sm = $e->getApplication()->getServiceManager();
-
-        if (!$this->sm->get('AuthService')->hasIdentity()){
-            $this->controller->plugin('redirect')->toRoute('auth');
-        }else{
-            die('lol');
-        }
-        die('lol');
-    }
-*/
-
 }

@@ -13,7 +13,7 @@ $this->headTitle($title);
     echo $this->formSubmit($form->get('submit'));
     echo $this->form()->closeTag();
     if ($this->messages){
-        echo '<ul>';
+        echo '<ul id="messages">';
         foreach($this->messages as $message)
         {
             echo '<li>'.$message.'</li>';
@@ -23,6 +23,15 @@ $this->headTitle($title);
 ?>
 </div>
 <style>
+    ul#messages{
+        padding: 5px 5px 5px 25px;
+        border: 1px solid #CCCCCC;
+        background-color: #F6DFDF;width: 90%;
+        margin: 0 auto 15px auto;
+        list-style: none;
+        color: rgb(131, 131, 131);
+        border-radius: 5px;
+    }
     form#login{padding: 20px;}
     span{display: inline-block;width: 120px;}
     input[type=text]{border-radius: 5px;border: 1px solid #CCCCCC;}

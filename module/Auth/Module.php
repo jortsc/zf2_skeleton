@@ -38,9 +38,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         if (null !== $matchedRoute) {
             $sharedManager->attach('Zend\Mvc\Controller\AbstractActionController','dispatch',
                 function($e) use ($sm) {
-                    /*$sm->get('ControllerPluginManager')->get('Checker')
-                        ->doAuthorization($e);*/
-
+                    $sm->get('ControllerPluginManager')
+                        ->get('Auth\Controller\Plugin\Checker')
+                        ->checkAuth($e);
                 },2
             );
         }

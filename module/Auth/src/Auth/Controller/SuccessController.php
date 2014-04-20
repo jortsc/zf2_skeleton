@@ -15,9 +15,12 @@ class SuccessController  extends AbstractActionController
 {
     public function indexAction()
     {
-        if (!$this->getServiceLocator()->get('AuthService')->hasIdentity()){
+        echo '<p style="background-color: #dca7a7;">' ,  __FILE__ , '</p>';
+       /* if (!$this->getServiceLocator()->get('AuthService')->hasIdentity()){
             return $this->redirect()->toRoute('auth');
-        }
+        }*/
+
+
         return new ViewModel();
     }
 } 
