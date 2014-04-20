@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS  `auth` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `auth` VALUES (1,'jorts',"6f4cd1d1cc4af385366685713a42415aaa6b874b");
+INSERT INTO `auth` VALUES (1,'username',"sha1 password");
